@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct CreateRestaurantView: View {
-    init() {
-        
-    }
+    @EnvironmentObject var restaurantsData : RestaurantsData
     @State var restName: String = ""
     var body: some View {
         VStack {
@@ -26,16 +24,13 @@ struct CreateRestaurantView: View {
             
             VStack {
                 Button("Add Restaurant") {
-                    
+                    restaurantsData.restaurants.append(Restaurant(name: restName, meals: []))
                 }
-                
-                
             }
-            
-            
         }
         .navigationTitle("Add Restaurant")
         .background(Color.tanCustom)
+        .environmentObject(restaurantsData)
     }
 }
 

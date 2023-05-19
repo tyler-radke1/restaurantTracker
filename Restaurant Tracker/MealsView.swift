@@ -11,8 +11,12 @@ struct MealsView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                
+                List {
+                    Text("Your meals will go here")
+                }
             }
+            .background(Color.tanCustom)
+            .scrollContentBackground(.hidden)
             .navigationTitle("Meals")
             .toolbar {
                 Button {

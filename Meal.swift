@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Meal {
+struct Meal: Identifiable {
+    let id: UUID = UUID()
     var name: String
 }

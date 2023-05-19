@@ -16,6 +16,7 @@
 		9FA68F142A16CE7C00BB768F /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA68F132A16CE7C00BB768F /* Meal.swift */; };
 		9FA68F172A16CF3600BB768F /* CreateRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA68F162A16CF3600BB768F /* CreateRestaurantView.swift */; };
 		9FA68F192A16D5AA00BB768F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA68F182A16D5AA00BB768F /* Colors.swift */; };
+		9FA68F1D2A17D6D300BB768F /* AddMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA68F1C2A17D6D300BB768F /* AddMealView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		9FA68F132A16CE7C00BB768F /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		9FA68F162A16CF3600BB768F /* CreateRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRestaurantView.swift; sourceTree = "<group>"; };
 		9FA68F182A16D5AA00BB768F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		9FA68F1C2A17D6D300BB768F /* AddMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				9FA68F012A16C86B00BB768F /* Restaurant_TrackerApp.swift */,
 				9FA68F032A16C86B00BB768F /* RestaurantsView.swift */,
+				9FA68F1C2A17D6D300BB768F /* AddMealView.swift */,
 				9FA68F162A16CF3600BB768F /* CreateRestaurantView.swift */,
 				9FA68F0F2A16CE0700BB768F /* MealsView.swift */,
 				9FA68F052A16C86D00BB768F /* Assets.xcassets */,
@@ -167,6 +170,7 @@
 				9FA68F022A16C86B00BB768F /* Restaurant_TrackerApp.swift in Sources */,
 				9FA68F102A16CE0700BB768F /* MealsView.swift in Sources */,
 				9FA68F172A16CF3600BB768F /* CreateRestaurantView.swift in Sources */,
+				9FA68F1D2A17D6D300BB768F /* AddMealView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
