@@ -14,7 +14,7 @@ class UserData: ObservableObject {
 }
 struct RestaurantsView: View {
     @EnvironmentObject var userData : UserData
-    @State private var addMealLinkActive = false
+    @State private var addMealLinkActive = false 
     
     var body: some View {
         NavigationStack {
@@ -22,10 +22,13 @@ struct RestaurantsView: View {
                 Group {
                     ForEach(userData.restaurants) { restaurant in
                         NavigationLink(destination: MealsView()) {
-                            Text(restaurant.name)
-                                .onTapGesture {
-                                    userData.currentRestaurant = restaurant
-                                }
+                            Button {
+                                userData.currentRestaurant = restaurant
+                            } label: {
+                                Text(restaurant.name)
+                                    .foregroundColor(Color.black)
+                            }
+
                         }
                     }
                     

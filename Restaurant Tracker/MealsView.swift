@@ -11,9 +11,8 @@ struct MealsView: View {
     @EnvironmentObject private var userData: UserData
     @State private var addMealLinkActive: Bool = false
     
-    
     var body: some View {
-        NavigationStack {
+       // NavigationStack {
             VStack {
                 List {
                     Group {
@@ -37,16 +36,16 @@ struct MealsView: View {
             .navigationTitle("Meals")
             .toolbar {
                 Button {
-                    addMealLinkActive.toggle()
+                    addMealLinkActive = true
                 } label: {
                     Image(systemName: "plus")
                 }
 
                 
             } .navigationDestination(isPresented: $addMealLinkActive) {
-                AddMealView(addMeal: addMealLinkActive)
+                AddMealView(addMealLinkActive: $addMealLinkActive)
             }
-        }
+      //  }
     }
 }
 

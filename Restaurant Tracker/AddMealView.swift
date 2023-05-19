@@ -10,11 +10,7 @@ import SwiftUI
 struct AddMealView: View {
     @EnvironmentObject var userData: UserData
     @State private var mealName: String = ""
-    @State private var addMealLinkActive: Bool
-    
-    init(addMeal: Bool) {
-        self.addMealLinkActive = addMeal
-    }
+    @Binding var addMealLinkActive: Bool
     
     var body: some View {
         VStack {
@@ -24,8 +20,8 @@ struct AddMealView: View {
             Button {
                 let meal = Meal(name: mealName)
                 
+                //MARK: Add meal to userData somewhere
                 userData.currentRestaurant.meals.append(meal)
-                
                 
                 addMealLinkActive.toggle()
             } label: {
@@ -35,12 +31,13 @@ struct AddMealView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.tanCustom)
+        .navigationTitle("Add Meal")
     }
 }
 
 struct AddMealView_Previews: PreviewProvider {
     static var previews: some View {
         let userData = UserData()
-        AddMealView(addMeal: true).environmentObject(userData)
+        AddMealView(addMealLinkActive: .constant(true)).environmentObject(userData)
     }
 }
