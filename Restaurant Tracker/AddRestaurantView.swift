@@ -7,35 +7,40 @@
 
 import SwiftUI
 
-struct CreateRestaurantView: View {
-    @EnvironmentObject var restaurantsData : RestaurantsData
+struct AddRestaurantView: View {
+    @EnvironmentObject var restaurantsData : UserData
     @State var restName: String = ""
+    @Binding var isLinkActive: Bool
+   // @Environment(\.isPresented) private var isPresented
     var body: some View {
-        VStack {
+        VStack() {
             //Restaurant Name
             VStack {
                 Spacer()
                 Text("Restaurant Name")
                 TextField("Name", text: $restName)
                     .frame(width: 340)
-                Spacer()
-                Divider()
             }
             
             VStack {
+                Spacer()
                 Button("Add Restaurant") {
+                    guard restName != "" else { return }
                     restaurantsData.restaurants.append(Restaurant(name: restName, meals: []))
+                    isLinkActive.toggle()
                 }
+                Spacer()
             }
         }
         .navigationTitle("Add Restaurant")
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.tanCustom)
         .environmentObject(restaurantsData)
     }
 }
 
-struct CreateRestaurantView_Previews: PreviewProvider {
+struct AddRestaurant_Previews: PreviewProvider {
     static var previews: some View {
-        CreateRestaurantView()
+        RestaurantsView().environmentObject(UserData())
     }
 }

@@ -8,11 +8,28 @@
 import SwiftUI
 
 struct MealsView: View {
+    @EnvironmentObject private var userData: UserData
+    @State private var addMealLinkActive: Bool = false
+    
+    
     var body: some View {
         NavigationStack {
             VStack {
                 List {
-                    Text("Your meals will go here")
+                    Group {
+                        ForEach(userData.currentRestaurant.meals) { meal in
+                            Text(meal.name)
+                        }
+                        
+                        if userData.currentRestaurant.meals.isEmpty {
+                            HStack {
+                                Spacer()
+                                Text("Add some meals from this restaurant to see them here!")
+                                Spacer()
+                            }
+                                
+                        }
+                    }
                 }
             }
             .background(Color.tanCustom)
@@ -20,11 +37,14 @@ struct MealsView: View {
             .navigationTitle("Meals")
             .toolbar {
                 Button {
-                    
+                    addMealLinkActive.toggle()
                 } label: {
                     Image(systemName: "plus")
                 }
+
                 
+            } .navigationDestination(isPresented: $addMealLinkActive) {
+                AddMealView(addMeal: addMealLinkActive)
             }
         }
     }
@@ -32,6 +52,6 @@ struct MealsView: View {
 
 struct MealsView_Previews: PreviewProvider {
     static var previews: some View {
-        MealsView()
+        MealsView().environmentObject(UserData())
     }
 }

@@ -7,24 +7,29 @@
 
 import SwiftUI
 
-class RestaurantsData: ObservableObject {
+class UserData: ObservableObject {
     @Published var restaurants: [Restaurant] = []
+    //Has default value to avoid having nil/coalescing later on, but this value shouldn't ever actually get read.
+    @Published var currentRestaurant: Restaurant = Restaurant(name: "This shouldn't ever show", meals: [])
 }
 struct RestaurantsView: View {
-    @EnvironmentObject var restaurantsData : RestaurantsData
-    @ObservedObject var restaurants = RestaurantsData()
+    @EnvironmentObject var userData : UserData
+    @State private var addMealLinkActive = false
     
     var body: some View {
         NavigationStack {
             List {
                 Group {
-                    ForEach(restaurantsData.restaurants) { restaurant in
+                    ForEach(userData.restaurants) { restaurant in
                         NavigationLink(destination: MealsView()) {
                             Text(restaurant.name)
+                                .onTapGesture {
+                                    userData.currentRestaurant = restaurant
+                                }
                         }
                     }
                     
-                    if restaurantsData.restaurants.isEmpty {
+                    if userData.restaurants.isEmpty {
                         Text("Add restaurants for them to appear here!")
                     }
                 }
@@ -33,11 +38,14 @@ struct RestaurantsView: View {
             .scrollContentBackground(.hidden)
             .navigationTitle("Restaurants")
             .toolbar {
-                NavigationLink {
-                    CreateRestaurantView()
+                Button {
+                    addMealLinkActive = true
                 } label: {
                     Image(systemName: "plus")
                 }
+
+            } .navigationDestination(isPresented: $addMealLinkActive) {
+                AddRestaurantView(isLinkActive: $addMealLinkActive)
             }
         }
     }
@@ -47,7 +55,8 @@ struct RestaurantsView: View {
 
 struct RestaurantsView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView().environmentObject(RestaurantsData())
+        let data = UserData()
+        RestaurantsView().environmentObject(data)
     }
 }
 
