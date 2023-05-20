@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AddMealView: View {
-    @EnvironmentObject var userData: UserData
     @State private var mealName: String = ""
     @Binding var addMealLinkActive: Bool
     
@@ -20,8 +19,8 @@ struct AddMealView: View {
             Button {
                 let meal = Meal(name: mealName)
                 
-                //MARK: Add meal to userData somewhere
-                userData.currentRestaurant.meals.append(meal)
+                //MARK: Add meal to Core Data somewhere
+                
                 
                 addMealLinkActive.toggle()
             } label: {
@@ -37,7 +36,6 @@ struct AddMealView: View {
 
 struct AddMealView_Previews: PreviewProvider {
     static var previews: some View {
-        let userData = UserData()
-        AddMealView(addMealLinkActive: .constant(true)).environmentObject(userData)
+        AddMealView(addMealLinkActive: .constant(true))
     }
 }

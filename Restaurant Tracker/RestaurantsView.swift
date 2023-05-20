@@ -6,33 +6,35 @@
 //
 
 import SwiftUI
+import CoreData
 
-class UserData: ObservableObject {
-    @Published var restaurants: [Restaurant] = []
-    //Has default value to avoid having nil/coalescing later on, but this value shouldn't ever actually get read.
-    @Published var currentRestaurant: Restaurant = Restaurant(name: "This shouldn't ever show", meals: [])
-}
+
 struct RestaurantsView: View {
-    @EnvironmentObject var userData : UserData
-    @State private var addMealLinkActive = false 
+    @State private var addMealLinkActive = false
+    
+    @State private var restaurants: [RestaurantCD] = []
+    
+    @Environment(\.managedObjectContext) private var viewContext
+
+    private let persistence = PersistenceController.shared
     
     var body: some View {
         NavigationStack {
             List {
                 Group {
-                    ForEach(userData.restaurants) { restaurant in
+                    ForEach(restaurants) { restaurant in
                         NavigationLink(destination: MealsView()) {
                             Button {
-                                userData.currentRestaurant = restaurant
+                                
                             } label: {
-                                Text(restaurant.name)
+                                Text(restaurant.name ?? "Hello")
                                     .foregroundColor(Color.black)
                             }
 
                         }
                     }
                     
-                    if userData.restaurants.isEmpty {
+                    if restaurants.isEmpty {
                         Text("Add restaurants for them to appear here!")
                     }
                 }
@@ -58,8 +60,7 @@ struct RestaurantsView: View {
 
 struct RestaurantsView_Previews: PreviewProvider {
     static var previews: some View {
-        let data = UserData()
-        RestaurantsView().environmentObject(data)
+        RestaurantsView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
 

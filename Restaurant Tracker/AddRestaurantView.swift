@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddRestaurantView: View {
-    @EnvironmentObject var restaurantsData : UserData
+    @State private var persistence = PersistenceController.shared
     @State var restName: String = ""
     @Binding var isLinkActive: Bool
    // @Environment(\.isPresented) private var isPresented
@@ -26,7 +26,12 @@ struct AddRestaurantView: View {
                 Spacer()
                 Button("Add Restaurant") {
                     guard restName != "" else { return }
-                    restaurantsData.restaurants.append(Restaurant(name: restName, meals: []))
+                    //Add Rest to core data
+                    persistence.createRestaurant(with: restName)
+                    
+                    //Save core data
+                    persistence.save()
+                    
                     isLinkActive.toggle()
                 }
                 Spacer()
@@ -35,12 +40,11 @@ struct AddRestaurantView: View {
         .navigationTitle("Add Restaurant")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.tanCustom)
-        .environmentObject(restaurantsData)
     }
 }
 
 struct AddRestaurant_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView().environmentObject(UserData())
+        RestaurantsView()
     }
 }

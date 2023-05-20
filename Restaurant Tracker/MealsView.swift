@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MealsView: View {
-    @EnvironmentObject private var userData: UserData
+    @State private var meals: [Meal] = []
     @State private var addMealLinkActive: Bool = false
     
     var body: some View {
@@ -16,11 +16,11 @@ struct MealsView: View {
             VStack {
                 List {
                     Group {
-                        ForEach(userData.currentRestaurant.meals) { meal in
+                        ForEach(meals) { meal in
                             Text(meal.name)
                         }
                         
-                        if userData.currentRestaurant.meals.isEmpty {
+                        if meals.isEmpty {
                             HStack {
                                 Spacer()
                                 Text("Add some meals from this restaurant to see them here!")
@@ -51,6 +51,6 @@ struct MealsView: View {
 
 struct MealsView_Previews: PreviewProvider {
     static var previews: some View {
-        MealsView().environmentObject(UserData())
+        MealsView()
     }
 }

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F9C56352A183C1E00B059BB /* CoreDataModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C56332A183C1E00B059BB /* CoreDataModels.xcdatamodeld */; };
+		9F9C56352A183C1E00B059BB /* RestaurantModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C56332A183C1E00B059BB /* RestaurantModels.xcdatamodeld */; };
+		9F9C56372A184F3D00B059BB /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C56362A184F3D00B059BB /* CoreData.swift */; };
 		9FA68F022A16C86B00BB768F /* Restaurant_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA68F012A16C86B00BB768F /* Restaurant_TrackerApp.swift */; };
 		9FA68F042A16C86B00BB768F /* RestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA68F032A16C86B00BB768F /* RestaurantsView.swift */; };
 		9FA68F062A16C86D00BB768F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FA68F052A16C86D00BB768F /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		9F9C56342A183C1E00B059BB /* CoreDataModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModels.xcdatamodel; sourceTree = "<group>"; };
+		9F9C56362A184F3D00B059BB /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		9FA68EFE2A16C86B00BB768F /* Restaurant Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Restaurant Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FA68F012A16C86B00BB768F /* Restaurant_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant_TrackerApp.swift; sourceTree = "<group>"; };
 		9FA68F032A16C86B00BB768F /* RestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsView.swift; sourceTree = "<group>"; };
@@ -72,7 +74,8 @@
 				9FA68F0F2A16CE0700BB768F /* MealsView.swift */,
 				9FA68F1C2A17D6D300BB768F /* AddMealView.swift */,
 				9FA68F052A16C86D00BB768F /* Assets.xcassets */,
-				9F9C56332A183C1E00B059BB /* CoreDataModels.xcdatamodeld */,
+				9F9C56332A183C1E00B059BB /* RestaurantModels.xcdatamodeld */,
+				9F9C56362A184F3D00B059BB /* CoreData.swift */,
 				9FA68F072A16C86D00BB768F /* Preview Content */,
 			);
 			path = "Restaurant Tracker";
@@ -170,7 +173,8 @@
 				9FA68F122A16CE7700BB768F /* Restaurant.swift in Sources */,
 				9FA68F042A16C86B00BB768F /* RestaurantsView.swift in Sources */,
 				9FA68F192A16D5AA00BB768F /* Colors.swift in Sources */,
-				9F9C56352A183C1E00B059BB /* CoreDataModels.xcdatamodeld in Sources */,
+				9F9C56372A184F3D00B059BB /* CoreData.swift in Sources */,
+				9F9C56352A183C1E00B059BB /* RestaurantModels.xcdatamodeld in Sources */,
 				9FA68F022A16C86B00BB768F /* Restaurant_TrackerApp.swift in Sources */,
 				9FA68F102A16CE0700BB768F /* MealsView.swift in Sources */,
 				9FA68F172A16CF3600BB768F /* AddRestaurantView.swift in Sources */,
@@ -375,13 +379,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9F9C56332A183C1E00B059BB /* CoreDataModels.xcdatamodeld */ = {
+		9F9C56332A183C1E00B059BB /* RestaurantModels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				9F9C56342A183C1E00B059BB /* CoreDataModels.xcdatamodel */,
 			);
 			currentVersion = 9F9C56342A183C1E00B059BB /* CoreDataModels.xcdatamodel */;
-			path = CoreDataModels.xcdatamodeld;
+			path = RestaurantModels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
