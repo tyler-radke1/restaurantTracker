@@ -9,15 +9,24 @@ import SwiftUI
 
 struct MealsView: View {
     @State private var meals: [Meal] = []
+    
+    @StateObject var persistence: PersistenceController
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
     @State private var addMealLinkActive: Bool = false
     
     var body: some View {
-       // NavigationStack {
+
             VStack {
                 List {
                     Group {
                         ForEach(meals) { meal in
-                            Text(meal.name)
+                            if let name = meal.name {
+                                NavigationLink(name) {
+                                    MealDetailView(meal: meal)
+                                }
+                            }
                         }
                         
                         if meals.isEmpty {
@@ -45,12 +54,15 @@ struct MealsView: View {
             } .navigationDestination(isPresented: $addMealLinkActive) {
                 AddMealView(addMealLinkActive: $addMealLinkActive)
             }
-      //  }
+        
+            .onAppear {
+                meals = persistence.fetchValues(for: .meal)
+            }
     }
 }
 
 struct MealsView_Previews: PreviewProvider {
     static var previews: some View {
-        MealsView()
+        MealsView(persistence: PersistenceController.shared)
     }
 }

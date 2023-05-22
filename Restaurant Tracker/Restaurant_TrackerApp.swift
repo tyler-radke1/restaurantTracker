@@ -11,7 +11,7 @@ import SwiftUI
 struct Restaurant_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            RestaurantsView()
+            RestaurantsView(persistence: PersistenceController.shared)
         }
     }
 }

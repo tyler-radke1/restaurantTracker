@@ -9,11 +9,11 @@ import SwiftUI
 import CoreData
 
 enum ObjectModelType: String {
-    case restaurant = "RestaurantCD"
-    case meal = "MealCD"
+    case restaurant = "Restaurant"
+    case meal = "Meal"
 }
 
-struct PersistenceController {
+class PersistenceController: ObservableObject {
     
     static let shared = PersistenceController()
 
@@ -48,6 +48,7 @@ struct PersistenceController {
         }
         do {
             try context.save()
+            print("Succesfully saved")
         } catch {
             print("Error saving context")
         }
@@ -56,11 +57,28 @@ struct PersistenceController {
     func createRestaurant(with name: String) {
         let context = PersistenceController.shared.container.viewContext
         
-        let restaurant = RestaurantCD(context: context)
+        let restaurant = Restaurant(context: context)
         
         restaurant.id = UUID()
         restaurant.name = name
         
         context.insert(restaurant)
+    }
+    //May or may not consolidate this into one function.
+    // Upsides and downsides to both, I'm not sure
+    
+    //MARK: Create current restaurant var somewhere
+    func createMeal(with name: String) {
+        let context = PersistenceController.shared.container.viewContext
+        
+        let currentRestaurant: Restaurant?
+        
+        let meal = Meal(context: context)
+        
+        meal.id = UUID()
+        
+        meal.name = name
+        
+        context.insert(meal)
     }
 }

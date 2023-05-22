@@ -9,9 +9,11 @@ import SwiftUI
 
 struct AddRestaurantView: View {
     @State private var persistence = PersistenceController.shared
+    
     @State var restName: String = ""
+    
     @Binding var isLinkActive: Bool
-   // @Environment(\.isPresented) private var isPresented
+
     var body: some View {
         VStack() {
             //Restaurant Name
@@ -45,6 +47,6 @@ struct AddRestaurantView: View {
 
 struct AddRestaurant_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView()
+        RestaurantsView(persistence: PersistenceController.shared)
     }
 }

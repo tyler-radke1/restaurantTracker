@@ -9,7 +9,13 @@ import SwiftUI
 
 struct AddMealView: View {
     @State private var mealName: String = ""
+    
     @Binding var addMealLinkActive: Bool
+    
+    @State private var persistence = PersistenceController.shared
+    
+    private let context = PersistenceController.shared.container.viewContext
+    
     
     var body: some View {
         VStack {
@@ -17,11 +23,8 @@ struct AddMealView: View {
                 .frame(width: 340)
             
             Button {
-                let meal = Meal(name: mealName)
-                
-                //MARK: Add meal to Core Data somewhere
-                
-                
+                persistence.createMeal(with: mealName)
+                persistence.save()
                 addMealLinkActive.toggle()
             } label: {
                 Text("Add meal")

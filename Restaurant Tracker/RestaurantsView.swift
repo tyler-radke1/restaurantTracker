@@ -11,20 +11,19 @@ import CoreData
 
 struct RestaurantsView: View {
     @State private var addMealLinkActive = false
-   
-    //Create observedObject ref to core data here
-    @State private var restaurants: [RestaurantCD] = []
+    
+    @StateObject var persistence: PersistenceController
     
     @Environment(\.managedObjectContext) private var viewContext
-
-    private let persistence = PersistenceController.shared
+    
+    @State private var restaurants: [Restaurant] = []
     
     var body: some View {
         NavigationStack {
             List {
                 Group {
                     ForEach(restaurants) { restaurant in
-                        NavigationLink(destination: MealsView()) {
+                        NavigationLink(destination: MealsView(persistence: persistence)) {
                             Button {
                                 
                             } label: {
@@ -33,6 +32,9 @@ struct RestaurantsView: View {
                             }
 
                         }
+                    }
+                    .onDelete { indexSet in
+                        deleteRest(at: indexSet)
                     }
                     
                     if restaurants.isEmpty {
@@ -53,6 +55,23 @@ struct RestaurantsView: View {
             } .navigationDestination(isPresented: $addMealLinkActive) {
                 AddRestaurantView(isLinkActive: $addMealLinkActive)
             }
+            
+            .onAppear {
+                restaurants = persistence.fetchValues(for: .restaurant)
+            }
+        }
+    }
+    
+    /// Delete Restaurant
+    /// Deletes a given restaurant from coreData
+    /// - Parameter offsets: Index set for list item to be deleted
+    func deleteRest(at offsets: IndexSet) {
+        for index in offsets {
+            let rest = restaurants[index]
+            
+            persistence.container.viewContext.delete(rest)
+            
+            persistence.save()
         }
     }
 }
@@ -61,7 +80,9 @@ struct RestaurantsView: View {
 
 struct RestaurantsView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+        RestaurantsView(persistence: PersistenceController.shared)
     }
 }
+
+
 
