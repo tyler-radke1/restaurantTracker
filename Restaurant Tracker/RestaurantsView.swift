@@ -11,7 +11,8 @@ import CoreData
 
 struct RestaurantsView: View {
     @State private var addMealLinkActive = false
-    
+   
+    //Create observedObject ref to core data here
     @State private var restaurants: [RestaurantCD] = []
     
     @Environment(\.managedObjectContext) private var viewContext
