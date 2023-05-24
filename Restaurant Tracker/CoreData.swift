@@ -16,6 +16,8 @@ enum ObjectModelType: String {
 class PersistenceController: ObservableObject {
     
     static let shared = PersistenceController()
+    
+    var currentRestaurant: Restaurant? = nil
 
     let container: NSPersistentContainer
 
@@ -71,7 +73,9 @@ class PersistenceController: ObservableObject {
     func createMeal(with name: String) {
         let context = PersistenceController.shared.container.viewContext
         
-        let currentRestaurant: Restaurant?
+        let currentRestaurant = PersistenceController.shared.currentRestaurant
+        
+        let currentMeals = currentRestaurant?.meals?.mutableCopy() as? NSMutableSet
         
         let meal = Meal(context: context)
         
@@ -79,6 +83,10 @@ class PersistenceController: ObservableObject {
         
         meal.name = name
         
-        context.insert(meal)
+        if let currentMeals {
+            currentMeals.add(meal)
+        } else {
+            
+        }
     }
 }

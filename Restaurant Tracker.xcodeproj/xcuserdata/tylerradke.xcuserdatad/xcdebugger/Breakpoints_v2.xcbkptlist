@@ -46,8 +46,8 @@
             filePath = "Restaurant Tracker/RestaurantsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "Restaurant Tracker/CoreData.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "createRestaurant(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "Restaurant Tracker/CoreData.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "save(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -88,14 +88,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "537F4CAD-A9F9-473F-A979-812D76D6E7AB"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Restaurant Tracker/RestaurantsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -128,6 +128,102 @@
                   startingLineNumber = "26"
                   endingLineNumber = "26"
                   offsetFromSymbolStart = "184">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8DBAC67E-3D90-4366-9D36-780AC5FFB72B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Restaurant Tracker/CoreData.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "createMeal(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8DBAC67E-3D90-4366-9D36-780AC5FFB72B - 7ec98d5857b60762"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Restaurant_Tracker.PersistenceController.createMeal(with: Swift.String) -&gt; ()"
+                  moduleName = "Restaurant Tracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tylerradke/Developer/Restaurant%20Tracker/Restaurant%20Tracker/CoreData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "996">
+               </Location>
+               <Location
+                  uuid = "8DBAC67E-3D90-4366-9D36-780AC5FFB72B - 7ec98d5857b60685"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Restaurant_Tracker.PersistenceController.createMeal(with: Swift.String) -&gt; ()"
+                  moduleName = "Restaurant Tracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tylerradke/Developer/Restaurant%20Tracker/Restaurant%20Tracker/CoreData.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "984">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8028ADA-F423-45C2-80C3-F66724490365"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Restaurant Tracker/RestaurantsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "A8028ADA-F423-45C2-80C3-F66724490365 - ab6b7bc4e7f491f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.Button&lt;SwiftUI.Text&gt; in closure #1 (Restaurant_Tracker.Restaurant) -&gt; SwiftUI.NavigationLink&lt;SwiftUI.Button&lt;SwiftUI.Text&gt;, Restaurant_Tracker.MealsView&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.Text&gt;)&gt; in closure #1 () -&gt; SwiftUI.Group&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.Text&gt;)&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in Restaurant_Tracker.RestaurantsView.body.getter : some"
+                  moduleName = "Restaurant Tracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tylerradke/Developer/Restaurant%20Tracker/Restaurant%20Tracker/RestaurantsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "A8028ADA-F423-45C2-80C3-F66724490365 - 9c6bdb067c1b6597"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.Button&lt;SwiftUI.Text&gt; in closure #1 (Restaurant_Tracker.Restaurant) -&gt; SwiftUI.NavigationLink&lt;SwiftUI.Button&lt;SwiftUI.Text&gt;, Restaurant_Tracker.MealsView&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.Text&gt;)&gt; in closure #1 () -&gt; SwiftUI.Group&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.Text&gt;)&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onAppear(perform: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in Restaurant_Tracker.RestaurantsView.body.getter : some"
+                  moduleName = "Restaurant Tracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tylerradke/Developer/Restaurant%20Tracker/Restaurant%20Tracker/RestaurantsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "44">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -14,7 +14,13 @@ struct MealsView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @State private var addMealLinkActive: Bool = false
+    //Binding var linking back to restaurant view
+    @Binding var restaurantLinkActive: Bool
+    
+    //State bool for nav link forward to creating/viewing meal
+    @State var mealViewLinkActive: Bool = false
+    
+    @State var linkType: LinkType = .addRestaurant
     
     var body: some View {
 
@@ -22,11 +28,14 @@ struct MealsView: View {
                 List {
                     Group {
                         ForEach(meals) { meal in
-                            if let name = meal.name {
-                                NavigationLink(name) {
-                                    MealDetailView(meal: meal)
-                                }
+                            Button {
+                                //Change stuff and what not
+                                linkType = .mealDetailView
+                                mealViewLinkActive.toggle()
+                            } label: {
+                                Text(meal.name ?? "meal")
                             }
+
                         }
                         
                         if meals.isEmpty {
@@ -45,24 +54,25 @@ struct MealsView: View {
             .navigationTitle("Meals")
             .toolbar {
                 Button {
-                    addMealLinkActive = true
+                    mealViewLinkActive.toggle()
                 } label: {
                     Image(systemName: "plus")
                 }
 
-                
-            } .navigationDestination(isPresented: $addMealLinkActive) {
-                AddMealView(addMealLinkActive: $addMealLinkActive)
+            } .navigationDestination(isPresented: $mealViewLinkActive) {
+                AddMealView(addMealLinkActive: $mealViewLinkActive)
             }
         
             .onAppear {
-                meals = persistence.fetchValues(for: .meal)
+                if let currentRestaurant = persistence.currentRestaurant {
+                    meals = currentRestaurant.meals?.allObjects as? [Meal] ?? []
+                }
             }
     }
 }
 
 struct MealsView_Previews: PreviewProvider {
     static var previews: some View {
-        MealsView(persistence: PersistenceController.shared)
+        MealsView(persistence: PersistenceController.shared, restaurantLinkActive: Binding.constant(false))
     }
 }

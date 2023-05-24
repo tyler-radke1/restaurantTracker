@@ -8,9 +8,17 @@
 import SwiftUI
 import CoreData
 
+enum LinkType {
+    case viewMeals
+    case addRestaurant
+    case addMeal
+    case mealDetailView
+}
 
 struct RestaurantsView: View {
-    @State private var addMealLinkActive = false
+    @State private var linkIsActive = false
+    
+    @State private var linkType: LinkType = .addRestaurant
     
     @StateObject var persistence: PersistenceController
     
@@ -23,15 +31,14 @@ struct RestaurantsView: View {
             List {
                 Group {
                     ForEach(restaurants) { restaurant in
-                        NavigationLink(destination: MealsView(persistence: persistence)) {
                             Button {
-                                
+                                persistence.currentRestaurant = restaurant
+                                linkType = .viewMeals
+                                linkIsActive.toggle()
                             } label: {
                                 Text(restaurant.name ?? "Hello")
                                     .foregroundColor(Color.black)
                             }
-
-                        }
                     }
                     .onDelete { indexSet in
                         deleteRest(at: indexSet)
@@ -47,13 +54,22 @@ struct RestaurantsView: View {
             .navigationTitle("Restaurants")
             .toolbar {
                 Button {
-                    addMealLinkActive = true
+                    linkType = .addRestaurant
+                    linkIsActive = true
                 } label: {
                     Image(systemName: "plus")
                 }
 
-            } .navigationDestination(isPresented: $addMealLinkActive) {
-                AddRestaurantView(isLinkActive: $addMealLinkActive)
+            } .navigationDestination(isPresented: $linkIsActive) {
+                switch linkType {
+                case .viewMeals:
+                    MealsView(persistence: persistence, restaurantLinkActive: $linkIsActive)
+                case .addRestaurant:
+                    AddRestaurantView(isLinkActive: $linkIsActive)
+                default:
+                    //This will probably cause weird behavior, but also shouldn't ever get hit.
+                   RestaurantsView(persistence: persistence)
+                }
             }
             
             .onAppear {
