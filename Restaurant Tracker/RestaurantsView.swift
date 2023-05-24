@@ -24,6 +24,8 @@ struct RestaurantsView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
+   @EnvironmentObject var currentRestaurant: PersistenceController
+    
     @State private var restaurants: [Restaurant] = []
     
     var body: some View {
@@ -32,7 +34,7 @@ struct RestaurantsView: View {
                 Group {
                     ForEach(restaurants) { restaurant in
                             Button {
-                                persistence.currentRestaurant = restaurant
+                                currentRestaurant.currentRestaurant = restaurant
                                 linkType = .viewMeals
                                 linkIsActive.toggle()
                             } label: {
@@ -63,7 +65,7 @@ struct RestaurantsView: View {
             } .navigationDestination(isPresented: $linkIsActive) {
                 switch linkType {
                 case .viewMeals:
-                    MealsView(persistence: persistence, restaurantLinkActive: $linkIsActive)
+                    MealsView(persistence: persistence, restaurantLinkActive: $linkIsActive).environmentObject(currentRestaurant)
                 case .addRestaurant:
                     AddRestaurantView(isLinkActive: $linkIsActive)
                 default:

@@ -12,6 +12,8 @@ struct MealsView: View {
     
     @StateObject var persistence: PersistenceController
     
+    @EnvironmentObject var currentRestaurant: PersistenceController
+    
     @Environment(\.managedObjectContext) private var viewContext
     
     //Binding var linking back to restaurant view
@@ -60,11 +62,11 @@ struct MealsView: View {
                 }
 
             } .navigationDestination(isPresented: $mealViewLinkActive) {
-                AddMealView(addMealLinkActive: $mealViewLinkActive)
+                AddMealView(addMealLinkActive: $mealViewLinkActive).environmentObject(persistence)
             }
         
             .onAppear {
-                if let currentRestaurant = persistence.currentRestaurant {
+                if let currentRestaurant = PersistenceController().currentRestaurant {
                     meals = currentRestaurant.meals?.allObjects as? [Meal] ?? []
                 }
             }

@@ -17,7 +17,7 @@ class PersistenceController: ObservableObject {
     
     static let shared = PersistenceController()
     
-    var currentRestaurant: Restaurant? = nil
+    @Published var currentRestaurant: Restaurant? = nil
 
     let container: NSPersistentContainer
 
@@ -73,7 +73,7 @@ class PersistenceController: ObservableObject {
     func createMeal(with name: String) {
         let context = PersistenceController.shared.container.viewContext
         
-        let currentRestaurant = PersistenceController.shared.currentRestaurant
+        let currentRestaurant = self.currentRestaurant
         
         let currentMeals = currentRestaurant?.meals?.mutableCopy() as? NSMutableSet
         
@@ -85,6 +85,7 @@ class PersistenceController: ObservableObject {
         
         if let currentMeals {
             currentMeals.add(meal)
+            currentRestaurant?.meals = currentMeals
         } else {
             
         }

@@ -14,6 +14,8 @@ struct AddMealView: View {
     
     @State private var persistence = PersistenceController.shared
     
+    @EnvironmentObject var currentRestaurant: PersistenceController
+    
     private let context = PersistenceController.shared.container.viewContext
     
     
@@ -34,6 +36,7 @@ struct AddMealView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.tanCustom)
         .navigationTitle("Add Meal")
+        
     }
 }
 
