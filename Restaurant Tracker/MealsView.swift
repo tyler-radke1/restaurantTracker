@@ -10,10 +10,6 @@ import SwiftUI
 struct MealsView: View {
     @State private var meals: [Meal] = []
     
-    @StateObject var persistence: PersistenceController
-    
-    @EnvironmentObject var currentRestaurant: PersistenceController
-    
     @Environment(\.managedObjectContext) private var viewContext
     
     //Binding var linking back to restaurant view
@@ -62,19 +58,14 @@ struct MealsView: View {
                 }
 
             } .navigationDestination(isPresented: $mealViewLinkActive) {
-                AddMealView(addMealLinkActive: $mealViewLinkActive).environmentObject(persistence)
+                AddMealView()
             }
         
-            .onAppear {
-                if let currentRestaurant = PersistenceController().currentRestaurant {
-                    meals = currentRestaurant.meals?.allObjects as? [Meal] ?? []
-                }
-            }
-    }
+        }
 }
 
 struct MealsView_Previews: PreviewProvider {
     static var previews: some View {
-        MealsView(persistence: PersistenceController.shared, restaurantLinkActive: Binding.constant(false))
+        MealsView()
     }
 }

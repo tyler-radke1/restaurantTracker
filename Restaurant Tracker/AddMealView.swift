@@ -12,12 +12,7 @@ struct AddMealView: View {
     
     @Binding var addMealLinkActive: Bool
     
-    @State private var persistence = PersistenceController.shared
-    
-    @EnvironmentObject var currentRestaurant: PersistenceController
-    
-    private let context = PersistenceController.shared.container.viewContext
-    
+    @State private var currentRestaurant: Restaurant?
     
     var body: some View {
         VStack {
@@ -25,8 +20,8 @@ struct AddMealView: View {
                 .frame(width: 340)
             
             Button {
-                persistence.createMeal(with: mealName)
-                persistence.save()
+                //Create a meal
+                
                 addMealLinkActive.toggle()
             } label: {
                 Text("Add meal")

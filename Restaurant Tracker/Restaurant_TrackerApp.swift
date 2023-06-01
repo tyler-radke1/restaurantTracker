@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct Restaurant_TrackerApp: App {
-    let persistence = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
-            RestaurantsView(persistence: persistence).environmentObject(persistence)
+            RestaurantsView()
         }
     }
 }

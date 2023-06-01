@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AddRestaurantView: View {
-    @State private var persistence = PersistenceController.shared
     
     @State var restName: String = ""
     
@@ -28,11 +27,11 @@ struct AddRestaurantView: View {
                 Spacer()
                 Button("Add Restaurant") {
                     guard restName != "" else { return }
-                    //Add Rest to core data
-                    persistence.createRestaurant(with: restName)
+                    //Create Restaurant
                     
-                    //Save core data
-                    persistence.save()
+                    
+                    //Save somehow
+                    
                     
                     isLinkActive.toggle()
                 }
@@ -47,6 +46,6 @@ struct AddRestaurantView: View {
 
 struct AddRestaurant_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView(persistence: PersistenceController.shared)
+        RestaurantsView()
     }
 }

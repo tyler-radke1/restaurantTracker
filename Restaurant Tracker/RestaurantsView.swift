@@ -20,13 +20,11 @@ struct RestaurantsView: View {
     
     @State private var linkType: LinkType = .addRestaurant
     
-    @StateObject var persistence: PersistenceController
-    
     @Environment(\.managedObjectContext) private var viewContext
     
-   @EnvironmentObject var currentRestaurant: PersistenceController
-    
     @State private var restaurants: [Restaurant] = []
+    
+    @State private var currentRestaurant: Restaurant?
     
     var body: some View {
         NavigationStack {
@@ -34,7 +32,7 @@ struct RestaurantsView: View {
                 Group {
                     ForEach(restaurants) { restaurant in
                             Button {
-                                currentRestaurant.currentRestaurant = restaurant
+                        
                                 linkType = .viewMeals
                                 linkIsActive.toggle()
                             } label: {
@@ -43,7 +41,7 @@ struct RestaurantsView: View {
                             }
                     }
                     .onDelete { indexSet in
-                        deleteRest(at: indexSet)
+                        //Delete restaurant here
                     }
                     
                     if restaurants.isEmpty {
@@ -65,31 +63,18 @@ struct RestaurantsView: View {
             } .navigationDestination(isPresented: $linkIsActive) {
                 switch linkType {
                 case .viewMeals:
-                    MealsView(persistence: persistence, restaurantLinkActive: $linkIsActive).environmentObject(currentRestaurant)
+                    MealsView(restaurantLinkActive: $linkIsActive)
                 case .addRestaurant:
                     AddRestaurantView(isLinkActive: $linkIsActive)
                 default:
                     //This will probably cause weird behavior, but also shouldn't ever get hit.
-                   RestaurantsView(persistence: persistence)
+                   RestaurantsView()
                 }
             }
             
             .onAppear {
-                restaurants = persistence.fetchValues(for: .restaurant)
+                restaurants = []
             }
-        }
-    }
-    
-    /// Delete Restaurant
-    /// Deletes a given restaurant from coreData
-    /// - Parameter offsets: Index set for list item to be deleted
-    func deleteRest(at offsets: IndexSet) {
-        for index in offsets {
-            let rest = restaurants[index]
-            
-            persistence.container.viewContext.delete(rest)
-            
-            persistence.save()
         }
     }
 }
@@ -98,7 +83,7 @@ struct RestaurantsView: View {
 
 struct RestaurantsView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView(persistence: PersistenceController.shared)
+        RestaurantsView()
     }
 }
 

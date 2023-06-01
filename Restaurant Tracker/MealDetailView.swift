@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct MealDetailView: View {
-    @State var meal: Meal
+    @State var meal: Meal?
     
     var body: some View {
-        if let name = meal.name {
+        if let name = meal?.name {
             Text(name)
         }
     }
@@ -19,6 +19,6 @@ struct MealDetailView: View {
 
 struct MealDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView(persistence: PersistenceController.shared)
+        RestaurantsView()
     }
 }
