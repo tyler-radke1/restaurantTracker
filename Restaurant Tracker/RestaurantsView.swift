@@ -73,7 +73,7 @@ struct RestaurantsView: View {
             }
             
             .onAppear {
-                restaurants = DataControl.retrieve("restaurants", from: .documents, as: [Restaurant].self)
+                //Retrieve restaurants here
             }
         }
     }

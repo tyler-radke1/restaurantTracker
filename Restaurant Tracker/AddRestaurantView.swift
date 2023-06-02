@@ -31,7 +31,7 @@ struct AddRestaurantView: View {
                     let restaurant = Restaurant(name: restName, meals: [])
                     
                     //Save somehow
-                    DataControl.store(restaurant, to: .documents, as: "restaurants")
+                    
                     
                     isLinkActive.toggle()
                 }

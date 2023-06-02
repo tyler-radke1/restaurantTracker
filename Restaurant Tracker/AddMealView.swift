@@ -21,7 +21,7 @@ struct AddMealView: View {
                 //Create a meal
                 let newMeal = Meal(name: mealName)
                 
-                DataControl.add(meal: newMeal)
+                //Saving will take place here. However that ends up being
                 
                 addMealLinkActive.toggle()
             } label: {
