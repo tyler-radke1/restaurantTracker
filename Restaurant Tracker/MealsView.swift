@@ -10,8 +10,6 @@ import SwiftUI
 struct MealsView: View {
     @State private var meals: [Meal] = []
     
-    @Environment(\.managedObjectContext) private var viewContext
-    
     //Binding var linking back to restaurant view
     @Binding var restaurantLinkActive: Bool
     
@@ -19,6 +17,8 @@ struct MealsView: View {
     @State var mealViewLinkActive: Bool = false
     
     @State var linkType: LinkType = .addRestaurant
+    
+    @State private var mealToShow: Meal?
     
     var body: some View {
 
@@ -29,9 +29,11 @@ struct MealsView: View {
                             Button {
                                 //Change stuff and what not
                                 linkType = .mealDetailView
+                                self.mealToShow = meal
                                 mealViewLinkActive.toggle()
                             } label: {
-                                Text(meal.name ?? "meal")
+                                Text(meal.name)
+                                    .foregroundColor(.black)
                             }
 
                         }
@@ -52,13 +54,28 @@ struct MealsView: View {
             .navigationTitle("Meals")
             .toolbar {
                 Button {
+                    linkType = .addMeal
                     mealViewLinkActive.toggle()
                 } label: {
                     Image(systemName: "plus")
                 }
 
             } .navigationDestination(isPresented: $mealViewLinkActive) {
-                AddMealView()
+                switch linkType {
+                case .addMeal:
+                    AddMealView(addMealLinkActive: $mealViewLinkActive)
+                case .mealDetailView:
+                    MealDetailView(meal: mealToShow)
+                default:
+                    RestaurantsView()
+                }
+                
+            }
+        
+            .onAppear {
+                if let currentRestaurant = DataControl.currentRestaurant {
+                    meals = currentRestaurant.meals
+                }
             }
         
         }
@@ -66,6 +83,6 @@ struct MealsView: View {
 
 struct MealsView_Previews: PreviewProvider {
     static var previews: some View {
-        MealsView()
+        MealsView(restaurantLinkActive: Binding.constant(true))
     }
 }

@@ -12,8 +12,6 @@ struct AddMealView: View {
     
     @Binding var addMealLinkActive: Bool
     
-    @State private var currentRestaurant: Restaurant?
-    
     var body: some View {
         VStack {
             TextField("Enter Meal's Name", text: $mealName)
@@ -21,6 +19,9 @@ struct AddMealView: View {
             
             Button {
                 //Create a meal
+                let newMeal = Meal(name: mealName)
+                
+                DataControl.add(meal: newMeal)
                 
                 addMealLinkActive.toggle()
             } label: {

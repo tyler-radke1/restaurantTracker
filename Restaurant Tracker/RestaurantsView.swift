@@ -32,11 +32,11 @@ struct RestaurantsView: View {
                 Group {
                     ForEach(restaurants) { restaurant in
                             Button {
-                        
+                                DataControl.currentRestaurant = restaurant
                                 linkType = .viewMeals
                                 linkIsActive.toggle()
                             } label: {
-                                Text(restaurant.name ?? "Hello")
+                                Text(restaurant.name)
                                     .foregroundColor(Color.black)
                             }
                     }
@@ -73,7 +73,7 @@ struct RestaurantsView: View {
             }
             
             .onAppear {
-                restaurants = []
+                restaurants = DataControl.retrieve("restaurants", from: .documents, as: [Restaurant].self)
             }
         }
     }

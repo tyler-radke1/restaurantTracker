@@ -28,10 +28,10 @@ struct AddRestaurantView: View {
                 Button("Add Restaurant") {
                     guard restName != "" else { return }
                     //Create Restaurant
-                    
+                    let restaurant = Restaurant(name: restName, meals: [])
                     
                     //Save somehow
-                    
+                    DataControl.store(restaurant, to: .documents, as: "restaurants")
                     
                     isLinkActive.toggle()
                 }

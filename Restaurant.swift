@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct Restaurant: Identifiable {
-    let id: UUID = UUID()
+struct Restaurant: Identifiable, Codable {
+    var id: UUID = UUID()
     var name: String
     var meals: [Meal]
-    var image: Image?
+    var imageData: Data?
 }

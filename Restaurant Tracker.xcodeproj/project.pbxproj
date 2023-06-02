@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F23E16B2A2907D300BAB450 /* DataControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23E16A2A2907D300BAB450 /* DataControl.swift */; };
 		9F6DBFEA2A1C2CF000193580 /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6DBFE92A1C2CF000193580 /* MealDetailView.swift */; };
 		9FA68F022A16C86B00BB768F /* Restaurant_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA68F012A16C86B00BB768F /* Restaurant_TrackerApp.swift */; };
 		9FA68F042A16C86B00BB768F /* RestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA68F032A16C86B00BB768F /* RestaurantsView.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F23E16A2A2907D300BAB450 /* DataControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControl.swift; sourceTree = "<group>"; };
 		9F6DBFE92A1C2CF000193580 /* MealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailView.swift; sourceTree = "<group>"; };
 		9FA68EFE2A16C86B00BB768F /* Restaurant Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Restaurant Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FA68F012A16C86B00BB768F /* Restaurant_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant_TrackerApp.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				9FA68F112A16CE7700BB768F /* Restaurant.swift */,
 				9FA68F132A16CE7C00BB768F /* Meal.swift */,
+				9F23E16A2A2907D300BAB450 /* DataControl.swift */,
 			);
 			name = "Data Objects";
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				9FA68F102A16CE0700BB768F /* MealsView.swift in Sources */,
 				9FA68F172A16CF3600BB768F /* AddRestaurantView.swift in Sources */,
 				9FA68F1D2A17D6D300BB768F /* AddMealView.swift in Sources */,
+				9F23E16B2A2907D300BAB450 /* DataControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
