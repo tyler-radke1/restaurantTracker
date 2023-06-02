@@ -18,8 +18,19 @@ class DataControl: ObservableObject {
     
     static var shared = DataControl()
     
-    static var restaurants: [Restaurant] = []
-    static var currentRestaurant: Restaurant? = nil
+    var restaurants: [Restaurant] = []
+    
+    var currentRestaurant: Restaurant? = nil
+    
+     init() {
+         print("Shared init called")
+        do {
+            self.restaurants = try read(fileName: "restaurants.json")
+        } catch {
+            self.restaurants = []
+        }
+        self.currentRestaurant = nil
+    }
     
     private func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -39,11 +50,13 @@ class DataControl: ObservableObject {
     }
     
     
-    func write<T>(object: T, with fileName: String, to baseUrl: URL) throws where T: Codable {
+    func write<T>(object: T, with fileName: String) throws where T: Codable {
         guard let encodedObject = getEncodedJson(object) else {
             print("Could not get encoded object")
             return
         }
+        
+        let baseUrl = getDocumentsDirectory()
         
         let url = baseUrl.appendingPathComponent(fileName)
         
@@ -55,7 +68,9 @@ class DataControl: ObservableObject {
         }
     }
     
-    func read<T>(fileName: String, from baseUrl: URL) throws -> T where T: Codable {
+    func read<T>(fileName: String) throws -> T where T: Codable {
+        let baseUrl = getDocumentsDirectory()
+        
         let url = baseUrl.appendingPathComponent(fileName)
 
         do {

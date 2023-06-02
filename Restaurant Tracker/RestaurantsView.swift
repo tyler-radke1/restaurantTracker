@@ -22,6 +22,8 @@ struct RestaurantsView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
+    private let shared = DataControl.shared
+    
     @State private var restaurants: [Restaurant] = []
     
     @State private var currentRestaurant: Restaurant?
@@ -32,7 +34,7 @@ struct RestaurantsView: View {
                 Group {
                     ForEach(restaurants) { restaurant in
                             Button {
-                                DataControl.currentRestaurant = restaurant
+                                shared.currentRestaurant = restaurant
                                 linkType = .viewMeals
                                 linkIsActive.toggle()
                             } label: {
@@ -74,6 +76,7 @@ struct RestaurantsView: View {
             
             .onAppear {
                 //Retrieve restaurants here
+                restaurants = shared.restaurants
             }
         }
     }

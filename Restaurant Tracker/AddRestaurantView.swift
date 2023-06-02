@@ -11,6 +11,8 @@ struct AddRestaurantView: View {
     
     @State var restName: String = ""
     
+    weak var shared = DataControl.shared
+    
     @Binding var isLinkActive: Bool
 
     var body: some View {
@@ -31,7 +33,13 @@ struct AddRestaurantView: View {
                     let restaurant = Restaurant(name: restName, meals: [])
                     
                     //Save somehow
+                    shared?.restaurants.append(restaurant)
                     
+                    do {
+                        try DataControl.shared.write(object: shared?.restaurants, with: "restaurants.json")
+                    } catch {
+                        print("Failure saving restaurant")
+                    }
                     
                     isLinkActive.toggle()
                 }

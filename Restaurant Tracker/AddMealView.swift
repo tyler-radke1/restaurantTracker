@@ -12,6 +12,8 @@ struct AddMealView: View {
     
     @Binding var addMealLinkActive: Bool
     
+    weak var shared = DataControl.shared
+    
     var body: some View {
         VStack {
             TextField("Enter Meal's Name", text: $mealName)
@@ -21,7 +23,11 @@ struct AddMealView: View {
                 //Create a meal
                 let newMeal = Meal(name: mealName)
                 
-                //Saving will take place here. However that ends up being
+                //Saving will take place here. However that ends up being done
+                let restIndex = shared?.restaurants.firstIndex(where: { $0.id == shared?.currentRestaurant?.id})
+                
+                shared?.restaurants.c
+            
                 
                 addMealLinkActive.toggle()
             } label: {
