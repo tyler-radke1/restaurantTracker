@@ -20,14 +20,20 @@ struct AddMealView: View {
                 .frame(width: 340)
             
             Button {
+                let restaurants = shared?.restaurants
+                let current = shared?.currentRestaurant
                 //Create a meal
                 let newMeal = Meal(name: mealName)
                 
-                //Saving will take place here. However that ends up being done
-                let restIndex = shared?.restaurants.firstIndex(where: { $0.id == shared?.currentRestaurant?.id})
+                if var current, var restaurants {
+                    current.meals.append(newMeal)
+                    
+                    //Replace
+                }
                 
-                shared?.restaurants.c
             
+                
+               
                 
                 addMealLinkActive.toggle()
             } label: {
