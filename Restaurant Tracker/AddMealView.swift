@@ -19,32 +19,35 @@ struct AddMealView: View {
             TextField("Enter Meal's Name", text: $mealName)
                 .frame(width: 340)
             
-            Button {
-                let restaurants = shared?.restaurants
-                let current = shared?.currentRestaurant
-                //Create a meal
-                let newMeal = Meal(name: mealName)
-                
-                if var current, var restaurants {
-                    current.meals.append(newMeal)
-                    
-                    //Replace
-                }
-                
+            Button("Add Meal", action: addMealButton)
             
-                
-               
-                
-                addMealLinkActive.toggle()
-            } label: {
-                Text("Add meal")
-            }
-
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.tanCustom)
         .navigationTitle("Add Meal")
         
+    }
+    
+    func addMealButton() {
+        guard let restaurants = shared?.restaurants, var current = shared?.currentRestaurant else { return }
+        //Create a meal
+        let newMeal = Meal(name: mealName)
+        
+        var newRestaurants = [Restaurant]()
+        
+        current.meals.append(newMeal)
+        
+        for restaurant in restaurants {
+            newRestaurants.append( restaurant.id == current.id ? current : restaurant)
+        }
+        
+        do {
+            try DataControl.shared.write(object: newRestaurants, with: "restaurants.json")
+        } catch {
+            print("Could not write restaurants")
+        }
+        
+        addMealLinkActive.toggle()
     }
 }
 

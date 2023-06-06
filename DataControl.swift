@@ -12,15 +12,16 @@ enum ErrorCodes: Error {
     case couldNotEncodeObject
     case couldNotFetchJSON
     case couldNotReadJSON
+    case couldNotWriteObject
 }
 
 class DataControl: ObservableObject {
     
     static var shared = DataControl()
     
-    var restaurants: [Restaurant] = []
+    @Published var restaurants: [Restaurant] = []
     
-    var currentRestaurant: Restaurant? = nil
+    @Published var currentRestaurant: Restaurant? = nil
     
      init() {
          print("Shared init called")

@@ -11,7 +11,7 @@ struct AddRestaurantView: View {
     
     @State var restName: String = ""
     
-    weak var shared = DataControl.shared
+    @EnvironmentObject var dataControl: DataControl
     
     @Binding var isLinkActive: Bool
 
@@ -27,28 +27,30 @@ struct AddRestaurantView: View {
             
             VStack {
                 Spacer()
-                Button("Add Restaurant") {
-                    guard restName != "" else { return }
-                    //Create Restaurant
-                    let restaurant = Restaurant(name: restName, meals: [])
-                    
-                    //Save somehow
-                    shared?.restaurants.append(restaurant)
-                    
-                    do {
-                        try DataControl.shared.write(object: shared?.restaurants, with: "restaurants.json")
-                    } catch {
-                        print("Failure saving restaurant")
-                    }
-                    
-                    isLinkActive.toggle()
-                }
+                Button("Add Restaurant", action: addButton)
                 Spacer()
             }
         }
         .navigationTitle("Add Restaurant")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.tanCustom)
+    }
+    
+    func addButton() {
+            guard restName != "" else { return }
+            //Create Restaurant
+            let restaurant = Restaurant(name: restName, meals: [])
+            
+            //Save somehow
+            dataControl.restaurants.append(restaurant)
+            
+            do {
+                try dataControl.write(object: dataControl.restaurants, with: "restaurants.json")
+            } catch {
+                print("Failure saving restaurant")
+            }
+            
+            isLinkActive.toggle()
     }
 }
 

@@ -20,7 +20,7 @@ struct RestaurantsView: View {
     
     @State private var linkType: LinkType = .addRestaurant
     
-    @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var dataControl: DataControl
     
     private let shared = DataControl.shared
     
@@ -63,20 +63,21 @@ struct RestaurantsView: View {
                 }
 
             } .navigationDestination(isPresented: $linkIsActive) {
+                let instance = DataControl()
                 switch linkType {
                 case .viewMeals:
-                    MealsView(restaurantLinkActive: $linkIsActive)
+                    MealsView(restaurantLinkActive: $linkIsActive).environmentObject(instance)
                 case .addRestaurant:
                     AddRestaurantView(isLinkActive: $linkIsActive)
                 default:
                     //This will probably cause weird behavior, but also shouldn't ever get hit.
-                   RestaurantsView()
+                    RestaurantsView()
                 }
             }
             
             .onAppear {
                 //Retrieve restaurants here
-                restaurants = shared.restaurants
+                restaurants = dataControl.restaurants
             }
         }
     }

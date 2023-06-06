@@ -10,10 +10,10 @@ import SwiftUI
 struct MealsView: View {
     @State private var meals: [Meal] = []
     
-    weak var shared = DataControl.shared
     //Binding var linking back to restaurant view
     @Binding var restaurantLinkActive: Bool
     
+    @EnvironmentObject var dataControl: DataControl
     //State bool for nav link forward to creating/viewing meal
     @State var mealViewLinkActive: Bool = false
     
@@ -74,9 +74,10 @@ struct MealsView: View {
             }
         
             .onAppear {
-                if let currentRestaurant = shared?.currentRestaurant {
+                if let currentRestaurant = dataControl.currentRestaurant {
                     meals = currentRestaurant.meals
                 }
+                
             }
         
         }

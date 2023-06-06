@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct Restaurant_TrackerApp: App {
-    
+    @StateObject var dataControl = DataControl()
     var body: some Scene {
         WindowGroup {
-            RestaurantsView()
+            RestaurantsView().environmentObject(dataControl)
         }
     }
 }
