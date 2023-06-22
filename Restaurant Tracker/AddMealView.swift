@@ -10,6 +10,8 @@ import SwiftUI
 struct AddMealView: View {
     @State private var mealName: String = ""
     
+    @Binding var meals: [Meal]
+    
     @Binding var addMealLinkActive: Bool
     
     weak var shared = DataControl.shared
@@ -35,24 +37,26 @@ struct AddMealView: View {
         
         var newRestaurants = [Restaurant]()
         
-        current.meals.append(newMeal)
+        meals.append(newMeal)
         
-        for restaurant in restaurants {
-            newRestaurants.append( restaurant.id == current.id ? current : restaurant)
-        }
-        
-        do {
-            try DataControl.shared.write(object: newRestaurants, with: "restaurants.json")
-        } catch {
-            print("Could not write restaurants")
-        }
-        
+//        current.meals.append(newMeal)
+//
+//        for restaurant in restaurants {
+//            newRestaurants.append( restaurant.id == current.id ? current : restaurant)
+//        }
+//
+//        do {
+//            try DataControl.shared.write(object: newRestaurants, with: "restaurants.json")
+//        } catch {
+//            print("Could not write restaurants")
+//        }
+//
         addMealLinkActive.toggle()
     }
 }
 
-struct AddMealView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddMealView(addMealLinkActive: .constant(true))
-    }
-}
+//struct AddMealView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddMealView(meals:Binding([Meal]()), addMealLinkActive: .constant(true))
+//    }
+//}

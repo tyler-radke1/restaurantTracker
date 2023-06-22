@@ -64,7 +64,7 @@ struct MealsView: View {
             } .navigationDestination(isPresented: $mealViewLinkActive) {
                 switch linkType {
                 case .addMeal:
-                    AddMealView(addMealLinkActive: $mealViewLinkActive)
+                    AddMealView(meals: $meals, addMealLinkActive: $mealViewLinkActive)
                 case .mealDetailView:
                     MealDetailView(meal: mealToShow)
                 default:
