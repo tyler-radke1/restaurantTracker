@@ -10,7 +10,7 @@ import SwiftUI
 struct AddMealView: View {
     @State private var mealName: String = ""
     
-    @Binding var meals: [Meal]
+    @Binding var currentRestaurant: Restaurant
     
     @Binding var addMealLinkActive: Bool
     
@@ -31,25 +31,27 @@ struct AddMealView: View {
     }
     
     func addMealButton() {
-        guard let restaurants = shared?.restaurants else { return }
+        guard let restaurants = shared?.getRestaurants() else { return }
         //Create a meal
         let newMeal = Meal(name: mealName)
         
         var newRestaurants = [Restaurant]()
         
-        meals.append(newMeal)
+        currentRestaurant.meals.append(newMeal)
         
-//        current.meals.append(newMeal)
-//
-//        for restaurant in restaurants {
-//            newRestaurants.append( restaurant.id == current.id ? current : restaurant)
-//        }
-//
-//        do {
-//            try DataControl.shared.write(object: newRestaurants, with: "restaurants.json")
-//        } catch {
-//            print("Could not write restaurants")
-//        }
+        for restaurant in restaurants {
+            guard currentRestaurant.id != restaurant.id else {
+                newRestaurants.append(currentRestaurant)
+                continue
+            }
+            newRestaurants.append(restaurant)
+        }
+
+        do {
+            try DataControl.shared.write(object: newRestaurants, with: "restaurants.json")
+        } catch {
+            print("Could not write restaurants")
+        }
 //
         addMealLinkActive.toggle()
     }

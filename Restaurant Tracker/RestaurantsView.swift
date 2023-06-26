@@ -19,19 +19,15 @@ struct RestaurantsView: View {
     @State private var linkIsActive = false
     
     @State private var linkType: LinkType = .addRestaurant
-    
-    @EnvironmentObject var dataControl: DataControl
-    
-    private let shared = DataControl.shared
-    
+        
     @State private var restaurants: [Restaurant] = []
     
-    @State private var currentRestaurant: Restaurant?
+    @State var currentRestaurant: Restaurant
     
+    private let shared = DataControl.shared
     var body: some View {
         NavigationStack {
             List {
-                Group {
                     ForEach(restaurants) { restaurant in
                             Button {
                                 currentRestaurant = restaurant
@@ -42,14 +38,11 @@ struct RestaurantsView: View {
                                     .foregroundColor(Color.black)
                             }
                     }
-                    .onDelete { indexSet in
-                        //Delete restaurant here
-                    }
+                    .onDelete(perform: delete)
                     
                     if restaurants.isEmpty {
                         Text("Add restaurants for them to appear here!")
                     }
-                }
             }
             .background(Color.tanCustom)
             .scrollContentBackground(.hidden)
@@ -63,22 +56,33 @@ struct RestaurantsView: View {
                 }
 
             } .navigationDestination(isPresented: $linkIsActive) {
-                let instance = DataControl()
                 switch linkType {
                 case .viewMeals:
-                    MealsView(restaurantLinkActive: $linkIsActive, currentRestaurant: currentRestaurant).environmentObject(instance)
+                    MealsView(restaurantLinkActive: $linkIsActive, currentRestaurant: $currentRestaurant)
                 case .addRestaurant:
-                    AddRestaurantView(isLinkActive: $linkIsActive)
+                    AddRestaurantView(restaurants: $restaurants, isLinkActive: $linkIsActive)
                 default:
                     //This will probably cause weird behavior, but also shouldn't ever get hit.
-                    RestaurantsView()
+                    RestaurantsView(currentRestaurant: currentRestaurant)
                 }
             }
             
             .onAppear {
                 //Retrieve restaurants here
-                restaurants = dataControl.restaurants
+                restaurants = shared.getRestaurants()
+                currentRestaurant = Restaurant(name: "Default", meals: [])
             }
+        }
+    }
+    
+    func delete(at indexSet: IndexSet) {
+        restaurants.remove(atOffsets: indexSet)
+        
+        do {
+            try shared.write(object: restaurants, with: "restaurants.json")
+            restaurants = shared.getRestaurants()
+        } catch {
+            print("Failed to write restaurants")
         }
     }
 }
@@ -87,7 +91,7 @@ struct RestaurantsView: View {
 
 struct RestaurantsView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView()
+        RestaurantsView(currentRestaurant: Restaurant(name: "Default", meals: []))
     }
 }
 

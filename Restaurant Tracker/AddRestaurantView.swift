@@ -11,7 +11,7 @@ struct AddRestaurantView: View {
     
     @State var restName: String = ""
     
-    @EnvironmentObject var dataControl: DataControl
+    @Binding var restaurants: [Restaurant]
     
     @Binding var isLinkActive: Bool
 
@@ -42,10 +42,10 @@ struct AddRestaurantView: View {
             let restaurant = Restaurant(name: restName, meals: [])
             
             //Save somehow
-            dataControl.restaurants.append(restaurant)
+            restaurants.append(restaurant)
             
             do {
-                try dataControl.write(object: dataControl.restaurants, with: "restaurants.json")
+                try DataControl.shared.write(object: restaurants, with: "restaurants.json")
             } catch {
                 print("Failure saving restaurant")
             }
@@ -56,6 +56,6 @@ struct AddRestaurantView: View {
 
 struct AddRestaurant_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView()
+        RestaurantsView(currentRestaurant: Restaurant(name: "default", meals: []))
     }
 }

@@ -15,7 +15,6 @@ struct MealsView: View {
     
     @Binding var currentRestaurant: Restaurant
     
-    @EnvironmentObject var dataControl: DataControl
     //State bool for nav link forward to creating/viewing meal
     @State var mealViewLinkActive: Bool = false
     
@@ -27,7 +26,7 @@ struct MealsView: View {
             VStack {
                 List {
                     Group {
-                        ForEach(meals) { meal in
+                        ForEach(currentRestaurant.meals) { meal in
                             Button {
                                 //Change stuff and what not
                                 linkType = .mealDetailView
@@ -65,27 +64,23 @@ struct MealsView: View {
             } .navigationDestination(isPresented: $mealViewLinkActive) {
                 switch linkType {
                 case .addMeal:
-                    AddMealView(meals: $meals, addMealLinkActive: $mealViewLinkActive)
+                    AddMealView(currentRestaurant: $currentRestaurant, addMealLinkActive: $mealViewLinkActive)
                 case .mealDetailView:
                     MealDetailView(meal: mealToShow)
                 default:
-                    RestaurantsView()
+                    RestaurantsView( currentRestaurant: Restaurant(name: "default", meals: []))
                 }
                 
             }
-        
             .onAppear {
-                if let currentRestaurant = dataControl.currentRestaurant {
-                    meals = currentRestaurant.meals
-                }
-                
+                meals = currentRestaurant.meals
             }
         
         }
 }
 
-struct MealsView_Previews: PreviewProvider {
-    static var previews: some View {
-        MealsView(restaurantLinkActive: Binding.constant(true))
-    }
-}
+//struct MealsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MealsView(restaurantLinkActive: Binding.constant(true), currentRestaurant: bind)
+//    }
+//}

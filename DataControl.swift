@@ -22,12 +22,23 @@ class DataControl: ObservableObject {
     @Published var restaurants: [Restaurant] = []
     
      init() {
-         print("Shared init called")
         do {
             self.restaurants = try read(fileName: "restaurants.json")
         } catch {
             self.restaurants = []
         }
+    }
+    
+    func getRestaurants() -> [Restaurant] {
+        var rests: [Restaurant] = []
+        do {
+            rests = try read(fileName: "restaurants.json")
+        } catch {
+            rests = []
+            print("Failed to get restaurants")
+        }
+        
+        return rests
     }
     
     private func getDocumentsDirectory() -> URL {
