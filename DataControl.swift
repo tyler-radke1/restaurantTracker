@@ -21,8 +21,6 @@ class DataControl: ObservableObject {
     
     @Published var restaurants: [Restaurant] = []
     
-    @Published var currentRestaurant: Restaurant? = nil
-    
      init() {
          print("Shared init called")
         do {
@@ -30,7 +28,6 @@ class DataControl: ObservableObject {
         } catch {
             self.restaurants = []
         }
-        self.currentRestaurant = nil
     }
     
     private func getDocumentsDirectory() -> URL {

@@ -31,7 +31,7 @@ struct AddMealView: View {
     }
     
     func addMealButton() {
-        guard let restaurants = shared?.restaurants, var current = shared?.currentRestaurant else { return }
+        guard let restaurants = shared?.restaurants else { return }
         //Create a meal
         let newMeal = Meal(name: mealName)
         

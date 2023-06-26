@@ -13,6 +13,8 @@ struct MealsView: View {
     //Binding var linking back to restaurant view
     @Binding var restaurantLinkActive: Bool
     
+    @Binding var currentRestaurant: Restaurant
+    
     @EnvironmentObject var dataControl: DataControl
     //State bool for nav link forward to creating/viewing meal
     @State var mealViewLinkActive: Bool = false
@@ -22,7 +24,6 @@ struct MealsView: View {
     @State private var mealToShow: Meal?
     
     var body: some View {
-
             VStack {
                 List {
                     Group {

@@ -34,7 +34,7 @@ struct RestaurantsView: View {
                 Group {
                     ForEach(restaurants) { restaurant in
                             Button {
-                                shared.currentRestaurant = restaurant
+                                currentRestaurant = restaurant
                                 linkType = .viewMeals
                                 linkIsActive.toggle()
                             } label: {
@@ -66,7 +66,7 @@ struct RestaurantsView: View {
                 let instance = DataControl()
                 switch linkType {
                 case .viewMeals:
-                    MealsView(restaurantLinkActive: $linkIsActive).environmentObject(instance)
+                    MealsView(restaurantLinkActive: $linkIsActive, currentRestaurant: currentRestaurant).environmentObject(instance)
                 case .addRestaurant:
                     AddRestaurantView(isLinkActive: $linkIsActive)
                 default:
