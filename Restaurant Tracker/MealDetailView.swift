@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct MealDetailView: View {
-    @State var meal: Meal?
+    @Binding var restaurant: Restaurant
+    
+    @State var meal: Meal
     
     var body: some View {
-        if let name = meal?.name {
-            Text(name)
-        }
+        Text(meal.name)
     }
 }
 

@@ -32,7 +32,6 @@ struct MealsView: View {
                         Text(meal.name)
                             .foregroundColor(.black)
                     }
-                    
                 }
                 
                 if meals.isEmpty {
@@ -61,7 +60,7 @@ struct MealsView: View {
             case .addMeal:
                 AddMealView(currentRestaurant: $currentRestaurant, addMealLinkActive: $mealViewLinkActive)
             case .mealDetailView:
-                MealDetailView(meal: mealToShow)
+                MealDetailView(restaurant: $currentRestaurant, meal: mealToShow!)
             default:
                 RestaurantsView( currentRestaurant: Restaurant(name: "default", meals: []))
             }

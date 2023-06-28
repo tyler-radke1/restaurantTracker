@@ -10,6 +10,10 @@ import SwiftUI
 struct AddMealView: View {
     @State private var mealName: String = ""
     
+    @State private var likeMeal: Bool = false
+    
+    @State private var notes: String = ""
+    
     @Binding var currentRestaurant: Restaurant
     
     @Binding var addMealLinkActive: Bool
@@ -17,23 +21,30 @@ struct AddMealView: View {
     weak var shared = DataControl.shared
     
     var body: some View {
-        VStack {
-            TextField("Enter Meal's Name", text: $mealName)
-                .frame(width: 340)
-            
-            Button("Add Meal", action: addMealButton)
-            
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.tanCustom)
-        .navigationTitle("Add Meal")
-        
+            VStack {
+                TextField("Enter Meal's Name", text: $mealName)
+                    .frame(width: 340)
+                    .padding(.all)
+                
+                Toggle("Did you like it?", isOn: $likeMeal)
+                    .padding(.all)
+                
+                TextField("Notes", text: $notes, axis: .vertical)
+                    .padding(.all)
+                    .lineLimit(1...4)
+                
+                Button("Add Meal", action: addMealButton)
+                
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.tanCustom)
+            .navigationTitle("Add Meal")
     }
     
     func addMealButton() {
         guard let restaurants = shared?.getRestaurants() else { return }
         //Create a meal
-        let newMeal = Meal(name: mealName)
+        let newMeal = Meal(name: mealName, likeMeal: likeMeal, notes: notes)
         
         var newRestaurants = [Restaurant]()
         

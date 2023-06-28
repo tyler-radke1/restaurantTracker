@@ -11,4 +11,6 @@ import SwiftUI
 struct Meal: Identifiable, Codable {
     let id: UUID = UUID()
     var name: String
+    var likeMeal: Bool
+    var notes: String
 }
