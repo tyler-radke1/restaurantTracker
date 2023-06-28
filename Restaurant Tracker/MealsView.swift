@@ -23,60 +23,62 @@ struct MealsView: View {
     @State private var mealToShow: Meal?
     
     var body: some View {
-            VStack {
-                List {
-                    Group {
-                        ForEach(currentRestaurant.meals) { meal in
-                            Button {
-                                //Change stuff and what not
-                                linkType = .mealDetailView
-                                self.mealToShow = meal
-                                mealViewLinkActive.toggle()
-                            } label: {
-                                Text(meal.name)
-                                    .foregroundColor(.black)
-                            }
-
-                        }
-                        
-                        if meals.isEmpty {
-                            HStack {
-                                Spacer()
-                                Text("Add some meals from this restaurant to see them here!")
-                                Spacer()
-                            }
-                                
-                        }
+        VStack {
+            List {
+                ForEach(currentRestaurant.meals) { meal in
+                    Button {
+                        mealTapped(meal: meal)
+                    } label: {
+                        Text(meal.name)
+                            .foregroundColor(.black)
                     }
-                }
-            }
-            .background(Color.tanCustom)
-            .scrollContentBackground(.hidden)
-            .navigationTitle("Meals")
-            .toolbar {
-                Button {
-                    linkType = .addMeal
-                    mealViewLinkActive.toggle()
-                } label: {
-                    Image(systemName: "plus")
-                }
-
-            } .navigationDestination(isPresented: $mealViewLinkActive) {
-                switch linkType {
-                case .addMeal:
-                    AddMealView(currentRestaurant: $currentRestaurant, addMealLinkActive: $mealViewLinkActive)
-                case .mealDetailView:
-                    MealDetailView(meal: mealToShow)
-                default:
-                    RestaurantsView( currentRestaurant: Restaurant(name: "default", meals: []))
+                    
                 }
                 
+                if meals.isEmpty {
+                    HStack {
+                        Spacer()
+                        Text("Add some meals from this restaurant to see them here!")
+                        Spacer()
+                    }
+                    
+                }
             }
-            .onAppear {
-                meals = currentRestaurant.meals
-            }
-        
         }
+        .background(Color.tanCustom)
+        .scrollContentBackground(.hidden)
+        .navigationTitle("Meals")
+        .toolbar {
+            Button {
+                linkType = .addMeal
+                mealViewLinkActive.toggle()
+            } label: {
+                Image(systemName: "plus")
+            }
+            
+        } .navigationDestination(isPresented: $mealViewLinkActive) {
+            switch linkType {
+            case .addMeal:
+                AddMealView(currentRestaurant: $currentRestaurant, addMealLinkActive: $mealViewLinkActive)
+            case .mealDetailView:
+                MealDetailView(meal: mealToShow)
+            default:
+                RestaurantsView( currentRestaurant: Restaurant(name: "default", meals: []))
+            }
+            
+        }
+        .onAppear {
+            meals = currentRestaurant.meals
+        }
+        
+    }
+    
+    func mealTapped(meal: Meal) {
+        //Change stuff and what not
+        linkType = .mealDetailView
+        self.mealToShow = meal
+        mealViewLinkActive.toggle()
+    }
 }
 
 //struct MealsView_Previews: PreviewProvider {

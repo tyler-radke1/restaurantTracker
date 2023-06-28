@@ -19,7 +19,7 @@ struct RestaurantsView: View {
     @State private var linkIsActive = false
     
     @State private var linkType: LinkType = .addRestaurant
-        
+    
     @State private var restaurants: [Restaurant] = []
     
     @State var currentRestaurant: Restaurant
@@ -28,33 +28,28 @@ struct RestaurantsView: View {
     var body: some View {
         NavigationStack {
             List {
-                    ForEach(restaurants) { restaurant in
-                            Button {
-                                currentRestaurant = restaurant
-                                linkType = .viewMeals
-                                linkIsActive.toggle()
-                            } label: {
-                                Text(restaurant.name)
-                                    .foregroundColor(Color.black)
-                            }
+                ForEach(restaurants) { restaurant in
+                    Button {
+                        restaurantTapped(restaurant: restaurant)
+                    } label: {
+                        Text(restaurant.name)
+                            .foregroundColor(Color.black)
                     }
-                    .onDelete(perform: delete)
-                    
-                    if restaurants.isEmpty {
-                        Text("Add restaurants for them to appear here!")
-                    }
+                }
+                .onDelete(perform: delete)
+                
+                if restaurants.isEmpty {
+                    Text("Add restaurants for them to appear here!")
+                }
             }
             .background(Color.tanCustom)
             .scrollContentBackground(.hidden)
             .navigationTitle("Restaurants")
             .toolbar {
-                Button {
-                    linkType = .addRestaurant
-                    linkIsActive = true
-                } label: {
+                Button(action: addRestaurantTapped) {
                     Image(systemName: "plus")
                 }
-
+                
             } .navigationDestination(isPresented: $linkIsActive) {
                 switch linkType {
                 case .viewMeals:
@@ -67,12 +62,24 @@ struct RestaurantsView: View {
                 }
             }
             
-            .onAppear {
-                //Retrieve restaurants here
-                restaurants = shared.getRestaurants()
-                currentRestaurant = Restaurant(name: "Default", meals: [])
-            }
+            .onAppear(perform: getRestaurants)
         }
+    }
+    
+    func getRestaurants() {
+        restaurants = shared.getRestaurants()
+        currentRestaurant = Restaurant(name: "Default", meals: [])
+    }
+    
+    func restaurantTapped(restaurant: Restaurant) {
+        currentRestaurant = restaurant
+        linkType = .viewMeals
+        linkIsActive.toggle()
+    }
+    
+    func addRestaurantTapped() {
+        linkType = .addRestaurant
+        linkIsActive = true
     }
     
     func delete(at indexSet: IndexSet) {
