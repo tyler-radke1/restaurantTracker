@@ -13,7 +13,21 @@ struct MealDetailView: View {
     @State var meal: Meal
     
     var body: some View {
-        Text(meal.name)
+        VStack {
+            Text(meal.name)
+                .padding(.all)
+            
+            Toggle("Did you like it?", isOn: $meal.likeMeal)
+                .padding(.all)
+            
+            TextField("Notes", text: $meal.notes, axis: .vertical)
+                .padding(.all)
+                .lineLimit(4)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.tanCustom)
+        .navigationTitle(meal.name)
+        
     }
 }
 

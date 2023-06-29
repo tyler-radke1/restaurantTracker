@@ -63,7 +63,6 @@ struct AddMealView: View {
         } catch {
             print("Could not write restaurants")
         }
-//
         addMealLinkActive.toggle()
     }
 }
