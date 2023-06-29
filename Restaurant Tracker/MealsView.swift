@@ -15,6 +15,8 @@ struct MealsView: View {
     
     @Binding var currentRestaurant: Restaurant
     
+    @Binding var restaurants: [Restaurant]
+    
     //State bool for nav link forward to creating/viewing meal
     @State var mealViewLinkActive: Bool = false
     
@@ -33,6 +35,7 @@ struct MealsView: View {
                             .foregroundColor(.black)
                     }
                 }
+                .onDelete(perform: delete)
                 
                 if meals.isEmpty {
                     HStack {
@@ -70,6 +73,27 @@ struct MealsView: View {
             meals = currentRestaurant.meals
         }
         
+    }
+    
+    func delete(at indexSet: IndexSet) {
+        meals.remove(atOffsets: indexSet)
+        
+        currentRestaurant.meals = meals
+        
+        var newRestaurants = [Restaurant]()
+        
+        for restaurant in restaurants {
+            let idCheck = restaurant.id == currentRestaurant.id
+            
+            newRestaurants.append(idCheck ? currentRestaurant : restaurant)
+        }
+        
+        do {
+            try DataControl.shared.write(object: newRestaurants, with: "restaurants.json")
+            restaurants = DataControl.shared.getRestaurants()
+        } catch {
+            print("Failed to write restaurants")
+        }
     }
     
     func mealTapped(meal: Meal) {

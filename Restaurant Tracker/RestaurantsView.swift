@@ -53,7 +53,7 @@ struct RestaurantsView: View {
             } .navigationDestination(isPresented: $linkIsActive) {
                 switch linkType {
                 case .viewMeals:
-                    MealsView(restaurantLinkActive: $linkIsActive, currentRestaurant: $currentRestaurant)
+                    MealsView(restaurantLinkActive: $linkIsActive, currentRestaurant: $currentRestaurant, restaurants: $restaurants)
                 case .addRestaurant:
                     AddRestaurantView(restaurants: $restaurants, isLinkActive: $linkIsActive)
                 default:

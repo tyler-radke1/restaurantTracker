@@ -41,7 +41,7 @@ struct AddRestaurantView: View {
             //Create Restaurant
             let restaurant = Restaurant(name: restName, meals: [])
             
-            //Save somehow
+            //Save
             restaurants.append(restaurant)
             
             do {
