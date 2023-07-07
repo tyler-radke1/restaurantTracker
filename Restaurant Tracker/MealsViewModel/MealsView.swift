@@ -60,8 +60,7 @@ struct MealsView: View {
         })
     
         .onAppear {
-            viewModel.currentRestaurant = self.currentRestaurant
-            viewModel.meals = viewModel.currentRestaurant.meals
+            viewModel.setRestaurantVars(restaurant: currentRestaurant)
         }
         
     }

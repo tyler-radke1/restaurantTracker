@@ -20,8 +20,6 @@ extension AddMealView {
         
         @Published var shared = DataControl.shared
         
-       // @Binding var addMealLinkActive: Bool
-        
         func addMealTo(restaurant: Restaurant, _ link: Binding<Bool>) {
             let restaurants = shared.getRestaurants()
             

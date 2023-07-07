@@ -49,14 +49,29 @@ extension MealsView {
         }
         
         func mealTapped(meal: Meal) {
-            //Change stuff and what not
-           // linkType = .mealDetailView
             self.mealToShow = meal
-            mealViewLinkActive.toggle()
+            mealDetailViewLinkActive.toggle()
         }
         
         func addMealTapped() {
             addMealLinkActive.toggle()
+        }
+        
+        func setRestaurantVars(restaurant: Restaurant) {
+            if let current = updateCurrentRestaurant(restaurant) {
+                currentRestaurant = current
+            }
+            meals = currentRestaurant.meals
+        }
+        private func updateCurrentRestaurant(_ restaurantToUpdate: Restaurant) -> Restaurant? {
+            
+            let restaurants = DataControl.shared.getRestaurants()
+            
+            let newCurrent = restaurants.first { rest in
+                rest.id == restaurantToUpdate.id
+            }
+            
+            return newCurrent
         }
     }
 }
