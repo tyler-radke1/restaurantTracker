@@ -18,8 +18,7 @@ extension MealsView {
         @Published var currentRestaurant: Restaurant = Restaurant(name: "Default", meals: [])
         
         @Published var restaurants: [Restaurant] = []
-        
-        //State bool for nav link forward to creating/viewing meal
+
         @Published var mealViewLinkActive: Bool = false
         
         @Published var addMealLinkActive = false
@@ -54,6 +53,10 @@ extension MealsView {
            // linkType = .mealDetailView
             self.mealToShow = meal
             mealViewLinkActive.toggle()
+        }
+        
+        func addMealTapped() {
+            addMealLinkActive.toggle()
         }
     }
 }

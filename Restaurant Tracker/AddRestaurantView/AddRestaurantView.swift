@@ -8,49 +8,31 @@
 import SwiftUI
 
 struct AddRestaurantView: View {
+    @StateObject var viewModel = AddRestaurantViewModel()
     
-    @State var restName: String = ""
+    @Binding var addRestaurantLinkActive: Bool
     
-    @Binding var restaurants: [Restaurant]
-    
-    @Binding var isLinkActive: Bool
-
     var body: some View {
         VStack() {
             //Restaurant Name
             VStack {
                 Spacer()
                 Text("Restaurant Name")
-                TextField("Name", text: $restName)
+                TextField("Name", text: $viewModel.restName)
                     .frame(width: 340)
             }
             
             VStack {
                 Spacer()
-                Button("Add Restaurant", action: addButton)
+                Button("Add Restaurant") {
+                    viewModel.addButton($addRestaurantLinkActive)
+                }
                 Spacer()
             }
         }
         .navigationTitle("Add Restaurant")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.tanCustom)
-    }
-    
-    func addButton() {
-            guard restName != "" else { return }
-            //Create Restaurant
-            let restaurant = Restaurant(name: restName, meals: [])
-            
-            //Save
-            restaurants.append(restaurant)
-            
-            do {
-                try DataControl.shared.write(object: restaurants, with: "restaurants.json")
-            } catch {
-                print("Failure saving restaurant")
-            }
-            
-            isLinkActive.toggle()
     }
 }
 

@@ -11,7 +11,7 @@ import SwiftUI
 extension RestaurantsView {
     @MainActor class RestaurantsViewModel: ObservableObject {
         
-        @Published var restaurantLinkActive = false
+        @Published var mealsViewLinkActive = false
         
         @Published var addRestaurantLinkActive = false
         
@@ -28,7 +28,7 @@ extension RestaurantsView {
         
         func restaurantTapped(restaurant: Restaurant) {
             currentRestaurant = restaurant
-            restaurantLinkActive.toggle()
+            mealsViewLinkActive.toggle()
         }
         
         func addRestaurantTapped() {

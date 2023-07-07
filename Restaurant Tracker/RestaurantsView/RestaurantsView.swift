@@ -39,14 +39,14 @@ struct RestaurantsView: View {
                 }
 
             }
-            .navigationDestination(isPresented: $viewModel.restaurantLinkActive, destination: {
+            .navigationDestination(isPresented: $viewModel.mealsViewLinkActive, destination: {
                 LazyContentView {
                     MealsView(restaurant: viewModel.currentRestaurant)
                 }
             })
             
             .navigationDestination(isPresented: $viewModel.addRestaurantLinkActive, destination: {
-                AddRestaurantView(restaurants: $viewModel.restaurants, isLinkActive: $viewModel.addRestaurantLinkActive)
+                AddRestaurantView(addRestaurantLinkActive: $viewModel.addRestaurantLinkActive)
             })
             
             .onAppear {

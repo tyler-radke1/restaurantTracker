@@ -46,13 +46,13 @@ struct MealsView: View {
         .navigationTitle("Meals")
         .toolbar {
             Button {
-                viewModel.mealViewLinkActive.toggle()
+                viewModel.addMealTapped()
             } label: {
                 Image(systemName: "plus")
             }
             
         } .navigationDestination(isPresented: $viewModel.addMealLinkActive, destination: {
-            AddMealView(currentRestaurant: $viewModel.currentRestaurant, addMealLinkActive: $viewModel.addMealLinkActive)
+            AddMealView(linkActive: $viewModel.addMealLinkActive, restaurant: viewModel.currentRestaurant)
         })
         
         .navigationDestination(isPresented: $viewModel.mealDetailViewLinkActive, destination: {

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9F23E16B2A2907D300BAB450 /* DataControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23E16A2A2907D300BAB450 /* DataControl.swift */; };
+		9F2C36882A585D3F0047920E /* AddRestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C36872A585D3F0047920E /* AddRestViewModel.swift */; };
+		9F2C368B2A586D660047920E /* AddMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C368A2A586D660047920E /* AddMealViewModel.swift */; };
 		9F6DBFEA2A1C2CF000193580 /* MealDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6DBFE92A1C2CF000193580 /* MealDetailView.swift */; };
 		9F80AA132A57A601003E1A21 /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F80AA122A57A601003E1A21 /* RestaurantViewModel.swift */; };
 		9F80AA162A57AC8C003E1A21 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F80AA152A57AC8C003E1A21 /* MealViewModel.swift */; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		9F23E16A2A2907D300BAB450 /* DataControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataControl.swift; sourceTree = "<group>"; };
+		9F2C36872A585D3F0047920E /* AddRestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRestViewModel.swift; sourceTree = "<group>"; };
+		9F2C368A2A586D660047920E /* AddMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealViewModel.swift; sourceTree = "<group>"; };
 		9F6DBFE92A1C2CF000193580 /* MealDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailView.swift; sourceTree = "<group>"; };
 		9F80AA122A57A601003E1A21 /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
 		9F80AA152A57AC8C003E1A21 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
@@ -54,6 +58,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F2C36892A585F0D0047920E /* AddRestaurantView */ = {
+			isa = PBXGroup;
+			children = (
+				9FA68F162A16CF3600BB768F /* AddRestaurantView.swift */,
+				9F2C36872A585D3F0047920E /* AddRestViewModel.swift */,
+			);
+			path = AddRestaurantView;
+			sourceTree = "<group>";
+		};
+		9F2C368C2A586D830047920E /* AddMealView */ = {
+			isa = PBXGroup;
+			children = (
+				9FA68F1C2A17D6D300BB768F /* AddMealView.swift */,
+				9F2C368A2A586D660047920E /* AddMealViewModel.swift */,
+			);
+			path = AddMealView;
+			sourceTree = "<group>";
+		};
 		9F80AA142A57A776003E1A21 /* RestaurantsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,9 +117,9 @@
 			children = (
 				9FA68F012A16C86B00BB768F /* Restaurant_TrackerApp.swift */,
 				9F80AA142A57A776003E1A21 /* RestaurantsView */,
-				9FA68F162A16CF3600BB768F /* AddRestaurantView.swift */,
+				9F2C36892A585F0D0047920E /* AddRestaurantView */,
 				9F80AA172A57ACB5003E1A21 /* MealsViewModel */,
-				9FA68F1C2A17D6D300BB768F /* AddMealView.swift */,
+				9F2C368C2A586D830047920E /* AddMealView */,
 				9F6DBFE92A1C2CF000193580 /* MealDetailView.swift */,
 				9FA68F052A16C86D00BB768F /* Assets.xcassets */,
 				9FA68F072A16C86D00BB768F /* Preview Content */,
@@ -203,10 +225,12 @@
 				9F80AA162A57AC8C003E1A21 /* MealViewModel.swift in Sources */,
 				9FA68F192A16D5AA00BB768F /* Colors.swift in Sources */,
 				9FA68F022A16C86B00BB768F /* Restaurant_TrackerApp.swift in Sources */,
+				9F2C368B2A586D660047920E /* AddMealViewModel.swift in Sources */,
 				9FA68F102A16CE0700BB768F /* MealsView.swift in Sources */,
 				9FA68F172A16CF3600BB768F /* AddRestaurantView.swift in Sources */,
 				9FA68F1D2A17D6D300BB768F /* AddMealView.swift in Sources */,
 				9F23E16B2A2907D300BAB450 /* DataControl.swift in Sources */,
+				9F2C36882A585D3F0047920E /* AddRestViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
