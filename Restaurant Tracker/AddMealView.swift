@@ -18,6 +18,8 @@ struct AddMealView: View {
     
     @Binding var addMealLinkActive: Bool
     
+    @State private var isShowingCamera: Bool = false
+    
     weak var shared = DataControl.shared
     
     var body: some View {
@@ -32,6 +34,10 @@ struct AddMealView: View {
                 TextField("Notes", text: $notes, axis: .vertical)
                     .padding(.all)
                     .lineLimit(1...4)
+                
+                Button("Select Image") {
+                    isShowingCamera.toggle()
+                }
                 
                 Button("Add Meal", action: addMealButton)
                 

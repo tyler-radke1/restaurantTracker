@@ -33,6 +33,6 @@ struct MealDetailView: View {
 
 struct MealDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RestaurantsView(currentRestaurant: Restaurant(name: "default", meals: []))
+        RestaurantsView()
     }
 }

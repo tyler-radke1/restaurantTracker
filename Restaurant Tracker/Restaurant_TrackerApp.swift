@@ -12,7 +12,7 @@ struct Restaurant_TrackerApp: App {
     @StateObject var dataControl = DataControl()
     var body: some Scene {
         WindowGroup {
-            RestaurantsView(currentRestaurant: Restaurant(name: "default", meals: [])).environmentObject(dataControl)
+            RestaurantsView()
         }
     }
 }
