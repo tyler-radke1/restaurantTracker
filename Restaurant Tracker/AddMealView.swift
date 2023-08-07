@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct AddMealView: View {
-    @State private var mealName: String = ""
-    
-    @State private var likeMeal: Bool = false
-    
-    @State private var notes: String = ""
     
     @Binding var currentRestaurant: Restaurant
     
@@ -35,9 +30,9 @@ struct AddMealView: View {
                     .padding(.all)
                     .lineLimit(1...4)
                 
-                Button("Select Image") {
-                    isShowingCamera.toggle()
-                }
+//                Button("Select Image") {
+//                    isShowingCamera.toggle()
+//                }
                 
                 Button("Add Meal", action: addMealButton)
                 

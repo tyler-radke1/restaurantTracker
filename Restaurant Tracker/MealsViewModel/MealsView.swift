@@ -46,7 +46,8 @@ struct MealsView: View {
         .navigationTitle("Meals")
         .toolbar {
             Button {
-                viewModel.mealViewLinkActive.toggle()
+              //  viewModel.mealViewLinkActive.toggle()
+                viewModel.addMealLinkActive.toggle()
             } label: {
                 Image(systemName: "plus")
             }
